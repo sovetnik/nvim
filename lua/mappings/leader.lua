@@ -8,7 +8,13 @@ local function opts(desc)
 end
 
 -- Test toggle
-vim.api.nvim_set_keymap('n', '<leader>s', ':AV<CR>', opts('Alternate file'))
+vim.api.nvim_set_keymap('n', '<leader>a', ':AV<CR>', opts('Alternate file'))
+
+-- Git hunks of buffer in LocList
+vim.keymap.set('n', '<leader>s', "<cmd>lua package.loaded.gitsigns.setloclist()<cr>", opts('Hunks in LocList'))
+-- vim.keymap.set('n', '<leader>s', package.loaded.gitsigns.setloclist(), opts('Hunks inn LocList'))
+-- Diagnostics info of buffer in LocList
+vim.keymap.set('n', '<leader>d', "<cmd>lua vim.diagnostic.setloclist()<cr>", opts(' Diagnostics in LocList'))
 
 -- Tree toggle
 vim.api.nvim_set_keymap('n', '<leader><leader>', ':NvimTreeFindFile<CR>', opts('Toggle Tree'))
@@ -25,7 +31,8 @@ vim.keymap.set('n', '<leader>b', builtin.buffers, opts('Telescope: list buffers'
 --vim.keymap.set('n', '<leader>h', "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts('Show signature'))
 
 -- Close quickfix menu
-vim.api.nvim_set_keymap('n', '<leader>c', ':cclose<CR>', opts('QF close not focused'))
+vim.api.nvim_set_keymap('n', '<leader>c', ':lclose<CR>', opts('LocList close not focused'))
+vim.api.nvim_set_keymap('n', '<leader>cc', ':cclose<CR>', opts('QF close not focused'))
 
 -- Open vertical split
 vim.api.nvim_set_keymap('n', '<leader>v', '<C-w>v', opts('Vertical split copy of this buffer'))
@@ -59,3 +66,18 @@ vim.keymap.set('n', '<leader>t', "<cmd>lua require('neotest').watch.toggle(vim.f
 
 -- Toggle summary
 vim.keymap.set('n', '<leader>y', neotest.summary.toggle, opts(' Toggle test summary'))
+
+-- Refactor it someday to local function
+function WinBufSwap()
+  local thiswin = vim.fn.winnr()
+  local thisbuf = vim.fn.bufnr("%")
+  local lastwin = vim.fn.winnr("#")
+  local lastbuf = vim.fn.winbufnr(lastwin)
+
+  vim.cmd(lastwin .. " wincmd w" .. "|" ..
+    "buffer " .. thisbuf .. "|" ..
+    thiswin .. " wincmd w" .. "|" ..
+    "buffer " .. lastbuf)
+end
+
+vim.api.nvim_set_keymap("n", "<Leader>z", "<cmd>lua WinBufSwap()<CR>", opts(' Swap current and last buffers'))

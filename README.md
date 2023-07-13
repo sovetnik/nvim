@@ -83,15 +83,25 @@ Autoupdate on enter VIM
 
 ## Projectionist navigation
 
-  `<leader>s` - Switches between code and test, 
+  `<leader>a` - Switches between code and test, 
       opens alternate in vertiocal split if not yet 
       and prompts for creating if alternate files not found
+
+## Git status and LSP diagnostics; QF and LC
+
+  `<leader>s` - Git hunks of buffer in LocList
+  `<leader>d` - Diagnostics info of buffer in LocList
+  `<leader>c` - Close LocList
+  `<leader>cc` - Close QuickFix
 
 ## Run test suite
 
   `<leader>r` - Neotest result panel toggle (list like qiuckfix)
   `<leader>t` - Neotest watch file toggle (run tests)
   `<leader>y` - Neotest summary toggle (test tree view)
+
+## Swap current and last buffers
+  `<leader>z` - Swap buffers
 
 ## Signature of elixir method
 

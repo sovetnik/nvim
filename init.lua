@@ -19,6 +19,7 @@ require 'mappings.leader'
 vim.cmd [[
   syntax enable
   colorscheme moonshine
+  highlight Comment ctermfg=143 cterm=NONE
   highlight Search ctermbg=237 ctermfg=190
   highlight IncSearch ctermbg=237 ctermfg=154 cterm=underline
   au BufWritePost *.ex,*.exs,*.heex,*.lua lua vim.lsp.buf.format()

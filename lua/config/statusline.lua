@@ -97,7 +97,6 @@ require('lualine').setup {
       {
         'diff',
         icon = ' ',
-        -- Is it me or the symbol for modified us really weird
         symbols = { added = '+', modified = '~', removed = '-' },
         diff_color = {
           added = { fg = 28 },
@@ -107,8 +106,7 @@ require('lualine').setup {
         source = diff_source,
         cond = conditions.hide_in_width,
         on_click = function()
-          package.loaded.gitsigns.setqflist()
-          -- vim.diagnostic.setloclist()
+          package.loaded.gitsigns.setloclist()
         end,
       }
     },
@@ -134,11 +132,8 @@ require('lualine').setup {
         'o:encoding',       -- option component same as &encoding in viml
         fmt = string.upper, -- I'm not sure why it's upper case either ;)
         cond = conditions.hide_in_width,
-        -- color = { fg = colors.green, gui = 'bold' },
       },
-      { 'fileformat',
-        -- color = { fg = colors.green, gui = 'bold' },
-      },
+      { 'fileformat', },
       { 'progress', },
     },
     lualine_z = {
