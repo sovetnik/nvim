@@ -64,6 +64,7 @@ Autoupdate on enter VIM
 
 ## Git commands
 
+  `<leader>g` - Open Neogit
   `<leader>h` - Show diff of hunk under cursor
   or `:Gitsigns preview_hunk_inline`
 

@@ -7,17 +7,20 @@ local function opts(desc)
   return { noremap = true, silent = true, desc = desc }
 end
 
+-- Tree toggle
+vim.api.nvim_set_keymap('n', '<leader><leader>', ':NvimTreeToggle<CR>', opts('Toggle Tree'))
+
 -- Test toggle
 vim.api.nvim_set_keymap('n', '<leader>a', ':AV<CR>', opts('Alternate file'))
 
 -- Git hunks of buffer in LocList
 vim.keymap.set('n', '<leader>s', "<cmd>lua package.loaded.gitsigns.setloclist()<cr>", opts('Hunks in LocList'))
--- vim.keymap.set('n', '<leader>s', package.loaded.gitsigns.setloclist(), opts('Hunks inn LocList'))
+
 -- Diagnostics info of buffer in LocList
 vim.keymap.set('n', '<leader>d', "<cmd>lua vim.diagnostic.setloclist()<cr>", opts(' Diagnostics in LocList'))
 
--- Tree toggle
-vim.api.nvim_set_keymap('n', '<leader><leader>', ':NvimTreeFindFile<CR>', opts('Toggle Tree'))
+-- Neogit open
+vim.api.nvim_set_keymap('n', '<leader>g', ':Neogit<CR>', opts('Open Neogit'))
 
 --
 -- Telescope
