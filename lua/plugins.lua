@@ -63,7 +63,23 @@ return packer.startup(function(use)
   use 'hrsh7th/vim-vsnip'
   use "rafamadriz/friendly-snippets"
 
-  use 'hrsh7th/nvim-cmp'
+  use {
+    'hrsh7th/nvim-cmp',
+    -- event = 'InsertEnter',
+    -- config = [[require('config.cmp')]]
+  }
+
+  -- autopairs for neovim written by lua
+  use {
+    "windwp/nvim-autopairs",
+    after = 'nvim-cmp',
+    config = function()
+      require("nvim-autopairs").setup {}
+      local cmp = require('cmp')
+      local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+      cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
+    end
+  }
 
   --
   -- Test runner
@@ -97,12 +113,6 @@ return packer.startup(function(use)
   --
   -- General usability
   --
-  -- autopairs for neovim written by lua
-  use {
-    "windwp/nvim-autopairs",
-    config = function() require("nvim-autopairs").setup {} end
-  }
-
   -- easily search for, substitute, and abbreviate multiple variants of a word
   use 'tpope/vim-abolish'
 

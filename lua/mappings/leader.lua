@@ -8,7 +8,7 @@ local function opts(desc)
 end
 
 -- Tree toggle
-vim.api.nvim_set_keymap('n', '<leader><leader>', ':NvimTreeToggle<CR>', opts('Toggle Tree'))
+vim.api.nvim_set_keymap('n', '<leader><leader>', ':NvimTreeFindFileToggle<CR>', opts('Toggle Tree'))
 
 -- Test toggle
 vim.api.nvim_set_keymap('n', '<leader>a', ':AV<CR>', opts('Alternate file'))
@@ -34,8 +34,7 @@ vim.keymap.set('n', '<leader>b', builtin.buffers, opts('Telescope: list buffers'
 --vim.keymap.set('n', '<leader>h', "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts('Show signature'))
 
 -- Close quickfix menu
-vim.api.nvim_set_keymap('n', '<leader>c', ':lclose<CR>', opts('LocList close not focused'))
-vim.api.nvim_set_keymap('n', '<leader>cc', ':cclose<CR>', opts('QF close not focused'))
+vim.api.nvim_set_keymap('n', '<leader>c', ':cclose | lclose<CR>', opts('LocList close not focused'))
 
 -- Open vertical split
 vim.api.nvim_set_keymap('n', '<leader>v', '<C-w>v', opts('Vertical split copy of this buffer'))
