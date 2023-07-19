@@ -29,6 +29,9 @@ vim.keymap.set('n', '<leader>n', builtin.find_files, opts('Telescope: find files
 vim.keymap.set('n', '\\', builtin.live_grep, opts('Telescope: grep files'))
 vim.keymap.set('n', '<leader>b', builtin.buffers, opts('Telescope: list buffers'))
 
+vim.keymap.set('n', '<leader>u', builtin.lsp_definitions, opts('Telescope: LSP definitions'))
+vim.keymap.set('n', '<leader>i', builtin.lsp_references, opts('Telescope: LSP references'))
+
 ----
 ---- Signature help
 --vim.keymap.set('n', '<leader>h', "<cmd>lua vim.lsp.buf.signature_help()<cr>", opts('Show signature'))
