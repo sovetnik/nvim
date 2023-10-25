@@ -2,25 +2,6 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-require("nvim-tree").setup({
-  sort_by = "case_sensitive",
-  sync_root_with_cwd = true,
-  view = {
-    width = 60,
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-  update_cwd = true,
-  update_focused_file = {
-    enable = true,
-    update_cwd = true
-  },
-})
-
 local function my_on_attach(bufnr)
   local api = require "nvim-tree.api"
 
@@ -36,9 +17,22 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', '?', api.tree.toggle_help, opts('Help'))
 end
 
--- pass to setup along with your other options
-require("nvim-tree").setup {
-  ---
+require("nvim-tree").setup({
   on_attach = my_on_attach,
-  ---
-}
+  sort_by = "case_sensitive",
+  sync_root_with_cwd = true,
+  view = {
+    width = "25%",
+  },
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+  update_cwd = true,
+  update_focused_file = {
+    enable = true,
+    update_cwd = true
+  },
+})

@@ -8,7 +8,7 @@ local function opts(desc)
 end
 
 -- Tree toggle
-vim.api.nvim_set_keymap('n', '<leader><leader>', ':NvimTreeFindFileToggle<CR>', opts('Toggle Tree'))
+vim.api.nvim_set_keymap('n', '\'\'', ':NvimTreeFindFileToggle<CR>', opts('Toggle Tree'))
 
 -- Test toggle
 vim.api.nvim_set_keymap('n', '<leader>a', ':AV<CR>', opts('Alternate file'))
