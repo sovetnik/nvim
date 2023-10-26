@@ -39,32 +39,6 @@ require('gitsigns').setup {
     enable = false
   },
   on_attach                    = function(bufnr)
-    -- highlight GitSignsDeleteLn ctermbg=234 ctermfg=190
-    -- highlight GitSignsDeleteVirtLnInLine ctermbg=232 ctermfg=201 cterm=underline
-    -- vim.api.nvim_set_hl(0, 'StatusLine', { bg = 'None' })
-    vim.cmd [[
-      highlight GitSignsAdd ctermbg=234 ctermfg=34
-      highlight GitSignsChange ctermbg=234 ctermfg=178
-      highlight GitSignsDelete ctermbg=234 ctermfg=160
-
-      highlight GitSignsUntrackedNr ctermbg=232 ctermfg=68
-
-      " Inline diff
-      highlight DiffAdd ctermbg=234 ctermfg=46
-      highlight GitSignsChangeInline ctermbg=238 ctermfg=226 cterm=underline
-      highlight GitSignsDeleteVirtLn ctermbg=234 ctermfg=160
-
-      " Inline added word
-      highlight GitSignsAddPreview ctermbg=232 ctermfg=34
-      highlight GitSignsAddInline ctermbg=232 ctermfg=154 cterm=underline
-
-      " Inline deleted line
-      highlight GitSignsDeletePreview ctermbg=232 ctermfg=160
-      " Inline deleted word in line
-      highlight GitSignsDeleteInline ctermbg=233 ctermfg=196 cterm=underline
-
-    ]]
-
     local gs = package.loaded.gitsigns
 
     local function map(mode, l, r, opts)

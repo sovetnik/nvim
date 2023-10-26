@@ -44,7 +44,10 @@ return packer.startup(function(use)
 
   --
   -- GIT integration
-  use { 'NeogitOrg/neogit', requires = 'nvim-lua/plenary.nvim' }
+  use { 'NeogitOrg/neogit',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim' } }
   -- Use dependency and run lua function after load
   use {
     'lewis6991/gitsigns.nvim',
@@ -142,9 +145,12 @@ return packer.startup(function(use)
     requires = { "nvim-lua/plenary.nvim" }
   }
 
+  -- Colorschemes
   -- You can alias plugin names
   use { 'karoliskoncevicius/moonshine-vim', as = 'moonshine' }
-
+  use { 'sainnhe/gruvbox-material' }
+  -- use 'AlexvZyl/nordic.nvim'
+  -- use 'sainnhe/everforest'
   -- update()
 end)
 

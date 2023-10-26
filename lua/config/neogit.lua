@@ -38,7 +38,7 @@ neogit.setup {
   ignored_settings = {},
   -- Change the default way of opening the commit popup
   commit_popup = {
-    kind = "split",
+    kind = "vsplit",
   },
   -- Change the default way of opening the preview buffer
   preview_buffer = {
@@ -73,16 +73,20 @@ neogit.setup {
   -- Setting any section to `false` will make the section not render at all
   sections = {
     untracked = {
-      folded = false
+      folded = false,
+      hidden = false
     },
     unstaged = {
-      folded = false
+      folded = false,
+      hidden = false
     },
     staged = {
-      folded = false
+      folded = false,
+      hidden = false
     },
     stashes = {
-      folded = true
+      folded = true,
+      hidden = false
     },
     unpulled = {
       folded = true,
@@ -93,7 +97,8 @@ neogit.setup {
       hidden = false
     },
     recent = {
-      folded = true
+      folded = true,
+      hidden = false
     },
   },
   -- override/add mappings
