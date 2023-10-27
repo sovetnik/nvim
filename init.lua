@@ -22,4 +22,3 @@ vim.cmd [[
   au BufWritePost *.ex,*.exs,*.heex,*.lua lua vim.lsp.buf.format()
   au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=700}
 ]]
-

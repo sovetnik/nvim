@@ -146,11 +146,10 @@ return packer.startup(function(use)
   }
 
   -- Colorschemes
-  -- You can alias plugin names
-  use { 'karoliskoncevicius/moonshine-vim', as = 'moonshine' }
-  use { 'sainnhe/gruvbox-material' }
+  -- use { 'karoliskoncevicius/moonshine-vim', as = 'moonshine' }
+  -- use { 'sainnhe/gruvbox-material' }
+  use { 'RRethy/nvim-base16' }
   -- use 'AlexvZyl/nordic.nvim'
-  -- use 'sainnhe/everforest'
   -- update()
 end)
 
