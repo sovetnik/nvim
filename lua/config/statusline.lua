@@ -1,21 +1,15 @@
--- Bubbles config for lualine
--- Author: lokesh-krishna
--- MIT license, see LICENSE for more details.
-
--- stylua: ignore
+-- this colors the same as for colorscheme
 local colors = {
-  bg       = '#202328',
-  fg       = '#bbc2cf',
-  gray     = '#3C3C3C',
-  darkgray = '#3c3836',
-  yellow   = '#cae682',
-  orange   = '#fe8019',
-  red      = '#df0000',
-  magenta  = '#f2c68a',
-  blue     = '#8ac6f2',
-  cyan     = '#8ac6f2',
+  gray     = '#3a3a3a',
+  darkgray = '#262626',
+  yellow   = '#ffff00',
+  gold     = '#ffd700',
+  orange   = '#ffaf00',
+  red      = '#ff5f00',
+  brown    = '#d78700',
+  blue     = '#87afff',
+  cyan     = '#afd7ff',
   green    = '#95e454',
-  black    = '#262626',
 }
 
 local conditions = {
@@ -34,19 +28,26 @@ local conditions = {
 }
 local my_theme = {
   normal = {
-    a = { fg = colors.darkgray, bg = colors.blue, gui = 'bold' },
-    b = { fg = colors.blue, bg = colors.gray },
-    c = { fg = colors.yellow, bg = colors.black },
+    a = { fg = colors.darkgray, bg = colors.brown, gui = 'bold' },
+    b = { fg = colors.gold, bg = colors.gray },
+    c = { fg = colors.yellow, bg = colors.darkgray },
   },
 
-  insert = { a = { fg = colors.darkgray, bg = colors.green } },
-  visual = { a = { fg = colors.darkgray, bg = colors.cyan } },
-  replace = { a = { fg = colors.darkgray, bg = colors.red } },
+  insert = {
+    a = { fg = colors.darkgray, bg = colors.green, gui = 'bold'
+    }
+  },
+  visual = {
+    a = { fg = colors.darkgray, bg = colors.orange, gui = 'bold' }
+  },
+  replace = {
+    a = { fg = colors.darkgray, bg = colors.red, gui = 'bold' }
+  },
 
   inactive = {
-    a = { fg = colors.white, bg = colors.darkgray },
-    b = { fg = colors.blue, bg = colors.gray },
-    c = { fg = colors.gray, bg = colors.darkgray },
+    a = { fg = colors.orange, bg = colors.darkgray },
+    b = { fg = colors.blue, bg = colors.darkgray },
+    c = { fg = colors.orange, bg = colors.gray },
   },
 }
 
@@ -99,9 +100,9 @@ require('lualine').setup {
         icon = ' ',
         symbols = { added = '+', modified = '~', removed = '-' },
         diff_color = {
-          added = { fg = 28 },
-          modified = { fg = 178 },
-          removed = { fg = 160 },
+          added = { fg = colors.green },
+          modified = { fg = colors.gold },
+          removed = { fg = colors.red },
         },
         source = diff_source,
         cond = conditions.hide_in_width,
