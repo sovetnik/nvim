@@ -3,7 +3,7 @@ require 'plugins'
 vim.cmd [[ :PackerUpdate ]]
 
 require 'config.absolute'
-require 'config.color'
+require 'config.colorscheme'
 require 'config.completion'
 require 'config.elixir'
 require 'config.gitsign'

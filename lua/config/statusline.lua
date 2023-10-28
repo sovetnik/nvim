@@ -1,16 +1,5 @@
 -- this colors the same as for colorscheme
-local colors = {
-  gray     = '#3a3a3a',
-  darkgray = '#262626',
-  yellow   = '#ffff00',
-  gold     = '#ffd700',
-  orange   = '#ffaf00',
-  red      = '#ff5f00',
-  brown    = '#d78700',
-  blue     = '#87afff',
-  cyan     = '#afd7ff',
-  green    = '#95e454',
-}
+local colors = require('../colors/golden_brown')
 
 local conditions = {
   buffer_not_empty = function()
