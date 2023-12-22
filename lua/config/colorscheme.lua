@@ -44,6 +44,7 @@ require('base16-colorscheme').setup({
 -- Global colors
 vim.api.nvim_set_hl(0, 'Search', { fg = colors.magenta, bg = colors.darkgray, bold = true })
 vim.api.nvim_set_hl(0, 'Visual', { fg = colors.gold, bg = colors.gray, bold = true })
+vim.api.nvim_set_hl(0, 'VertSplit', { fg = colors.gray, bg = colors.darkgray })
 
 --  Telescope common
 vim.api.nvim_set_hl(0, 'TelescopeNormal', { fg = colors.gold, bg = colors.black })
