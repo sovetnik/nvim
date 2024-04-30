@@ -26,7 +26,7 @@ require('base16-colorscheme').setup({
   -- start-filename div variable git-deleted
   base08 = colors.red,
   -- startify-choice  @var num bool
-  base09 = colors.cyan,
+  base09 = colors.blue,
   -- constant
   base0A = colors.brown,
   -- text string
@@ -41,10 +41,16 @@ require('base16-colorscheme').setup({
   base0F = colors.yellow,
 })
 
+-- Elixir treesitter colors
+vim.api.nvim_set_hl(0, '@spell.markdown', { fg = colors.orange, bg = colors.black })
+vim.api.nvim_set_hl(0, '@module.elixir', { fg = colors.brown, bg = colors.black })
+vim.api.nvim_set_hl(0, 'SpecialChar', { fg = colors.green, bg = colors.black })
+vim.api.nvim_set_hl(0, 'TSString', { fg = colors.cyan, bg = colors.black })
+
 -- Global colors
 vim.api.nvim_set_hl(0, 'Search', { fg = colors.magenta, bg = colors.darkgray, bold = true })
-vim.api.nvim_set_hl(0, 'Visual', { fg = colors.gold, bg = colors.gray, bold = true })
 vim.api.nvim_set_hl(0, 'VertSplit', { fg = colors.gray, bg = colors.darkgray })
+vim.api.nvim_set_hl(0, 'Visual', { fg = colors.gold, bg = colors.gray, bold = true })
 
 --  Telescope common
 vim.api.nvim_set_hl(0, 'TelescopeNormal', { fg = colors.gold, bg = colors.black })

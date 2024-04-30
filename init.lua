@@ -1,7 +1,5 @@
 require 'plugins'
 
-vim.cmd [[ :PackerUpdate ]]
-
 require 'config.absolute'
 require 'config.colorscheme'
 require 'config.completion'

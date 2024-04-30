@@ -28,6 +28,8 @@ local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>n', builtin.find_files, opts('Telescope: find files'))
 vim.keymap.set('n', '\\', builtin.live_grep, opts('Telescope: grep files'))
 vim.keymap.set('n', '<leader>b', builtin.buffers, opts('Telescope: list buffers'))
+vim.keymap.set('n', '<leader>l', ":lua require'elixir-extras'.elixir_view_docs({include_mix_libs=true})<cr>",
+  { desc = "elixir apidocs (all)" })
 
 vim.keymap.set('n', '<leader>u', builtin.lsp_definitions, opts('Telescope: LSP definitions'))
 vim.keymap.set('n', '<leader>i', builtin.lsp_references, opts('Telescope: LSP references'))
@@ -68,6 +70,11 @@ vim.keymap.set('n', '<leader>r', neotest.output_panel.toggle, opts('Toggle test 
 -- vim.keymap.set('n', '<leader>r', "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", opts)
 vim.keymap.set('n', '<leader>t', "<cmd>lua require('neotest').watch.toggle(vim.fn.expand('%'))<cr>",
   opts(' Toggle Watch this test'))
+
+vim.keymap.set('n', '[i', "<cmd>lua require('neotest').jump.prev({ status = 'failed' })<cr>",
+  opts(' Jump to prev failed'))
+vim.keymap.set('n', ']i', "<cmd>lua require('neotest').jump.next({ status = 'failed' })<cr>",
+  opts(' Jump to next failed'))
 
 -- Toggle summary
 vim.keymap.set('n', '<leader>y', neotest.summary.toggle, opts(' Toggle test summary'))
