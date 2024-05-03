@@ -81,10 +81,7 @@ plugins = {
   },
 
   -- Test runner
-  {
-    "nvim-neotest/nvim-nio",
-    version = '1.9.0'
-  },
+  { "nvim-neotest/nvim-nio" },
   { "jfpedroza/neotest-elixir" },
   { "nvim-neotest/neotest-vim-test" },
   { "antoinemadec/FixCursorHold.nvim" },
