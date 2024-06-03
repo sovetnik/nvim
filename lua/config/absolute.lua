@@ -1,10 +1,7 @@
-vim.api.nvim_set_option('smarttab', false)
-
 -- set main language
 -- language en_US
 
 -- change the terminal's title
-vim.o.title = true
 vim.o.title = true
 
 -- Absolute number for active line, relative for others
@@ -38,8 +35,6 @@ vim.o.autoread = true
 vim.o.autowriteall = true
 
 -- write backup before overwriting file, and remove if successfully written
-vim.o.nobackup = true
-vim.o.noswapfile = true
 vim.o.writebackup = true
 
 -- Start scrolling when we're 7 lines away from margins

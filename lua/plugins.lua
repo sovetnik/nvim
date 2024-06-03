@@ -114,10 +114,7 @@ plugins = {
   -- Elixir integration
   {
     "elixir-tools/elixir-tools.nvim", tag = "stable", requires = { "plenary.nvim" } },
-  {
-    'emmanueltouzery/elixir-extras.nvim',
-    config = function() require('elixir-extras').elixir_view_docs({ include_mix_libs = true }) end
-  },
+  { 'emmanueltouzery/elixir-extras.nvim' },
 
   -- Colorschemes
   { 'RRethy/nvim-base16' }
