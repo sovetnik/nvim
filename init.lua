@@ -17,6 +17,6 @@ require 'mappings.core'
 require 'mappings.leader'
 
 vim.cmd [[
-  au BufWritePost *.ex,*.exs,*.heex,*.lua lua vim.lsp.buf.format()
+  au BufWritePost *.ex,*.exs,*.heex,*.lua,*.rb lua vim.lsp.buf.format()
   au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=700}
 ]]
