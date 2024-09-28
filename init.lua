@@ -16,7 +16,16 @@ require 'config.treesitter'
 require 'mappings.core'
 require 'mappings.leader'
 
-vim.cmd [[
-  au BufWritePost *.ex,*.exs,*.heex,*.lua,*.rb,*.erb,*.yml lua vim.lsp.buf.format()
-  au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=700}
-]]
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function()
+    vim.lsp.buf.format({ async = false })
+  end,
+})
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  pattern = "*",
+  callback = function()
+    vim.highlight.on_yank({ higroup = "IncSearch", timeout = 700 })
+  end,
+})

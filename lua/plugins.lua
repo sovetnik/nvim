@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 
 
 -- Define plugins with lazy loading
-plugins = {
+local plugins = {
   -- Time tracking
   { 'wakatime/vim-wakatime' },
 
@@ -61,6 +61,8 @@ plugins = {
   },
 
   -- Language Server stuff
+  { 'williamboman/mason.nvim' },
+  { 'williamboman/mason-lspconfig.nvim' },
   { 'neovim/nvim-lspconfig' },
   { 'hrsh7th/cmp-nvim-lsp' },
   { 'hrsh7th/cmp-buffer' },
@@ -85,7 +87,6 @@ plugins = {
   { "jfpedroza/neotest-elixir" },
   { "nvim-neotest/neotest-vim-test" },
   { "antoinemadec/FixCursorHold.nvim" },
-  { "nvim-treesitter/nvim-treesitter" },
   {
     "nvim-neotest/neotest",
     requires = { "nvim-neotest/nvim-nio", "nvim-neotest/neotest-vim-test", "plenary.nvim", "antoinemadec/FixCursorHold.nvim" }

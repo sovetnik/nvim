@@ -1,11 +1,21 @@
 -- Setup language servers.
 local lspconfig = require('lspconfig')
 
+require("mason").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = { "elixirls", "lua_ls" },
+})
 --
 -- Elixir LS
 --
 lspconfig.elixirls.setup {
-  cmd = { 'elixir-ls' },
+  -- cmd = { 'elixir-ls' },
+  settings = {
+    elixirLS = {
+      dialyzerEnabled = false, -- Отключаем для тестирования
+      fetchDeps = false,
+    }
+  },
 }
 
 --
