@@ -24,6 +24,9 @@ mostly commented and separated by files.
   $ asdf install
   $ brew install elixir-ls
 
+  Add the ruby-lsp & rubocop via asdf
+  $ asdf exec gem install ruby-lsp rubocop
+
 ## Telescope backend
 
   $ brew install ripgrep

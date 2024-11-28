@@ -85,6 +85,7 @@ local plugins = {
   -- Test runner
   { "nvim-neotest/nvim-nio" },
   { "jfpedroza/neotest-elixir" },
+  { "olimorris/neotest-rspec" },
   { "nvim-neotest/neotest-vim-test" },
   { "antoinemadec/FixCursorHold.nvim" },
   {
@@ -107,10 +108,11 @@ local plugins = {
   { 'tpope/vim-abolish' },
   { 'tommcdo/vim-exchange' },
   { 'tpope/vim-commentary' },
-  { 'tpope/vim-unimpaired' },
+  { 'tpope/vim-projectionist' },
+  { 'tpope/vim-rails' },
   { 'tpope/vim-repeat' },
   { 'tpope/vim-surround' },
-  { 'tpope/vim-projectionist' },
+  { 'tpope/vim-unimpaired' },
 
   -- Elixir integration
   {

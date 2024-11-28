@@ -1,9 +1,11 @@
 -- Setup language servers.
 local lspconfig = require('lspconfig')
 
-require("mason").setup()
+require("mason").setup({
+  PATH = "append",
+})
 require("mason-lspconfig").setup({
-  ensure_installed = { "elixirls", "lua_ls" },
+  ensure_installed = { "elixirls", "lua_ls", "ruby_lsp" },
 })
 --
 -- Elixir LS
