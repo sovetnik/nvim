@@ -8,6 +8,7 @@ require 'config.gitsign'
 require 'config.lsp'
 require 'config.neogit'
 require 'config.neotest'
+require 'config.other'
 require 'config.signature'
 require 'config.statusline'
 require 'config.telescope'
@@ -29,3 +30,5 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 700 })
   end,
 })
+
+

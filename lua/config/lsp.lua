@@ -5,7 +5,7 @@ require("mason").setup({
   PATH = "append",
 })
 require("mason-lspconfig").setup({
-  ensure_installed = { "elixirls", "lua_ls", "ruby_lsp" },
+  ensure_installed = { "elixirls", "lua_ls" },
 })
 --
 -- Elixir LS

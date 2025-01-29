@@ -104,6 +104,8 @@ local plugins = {
   -- Treesitter
   { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
 
+  { 'rgroli/other.nvim' },
+
   -- General usability
   { 'tpope/vim-abolish' },
   { 'tommcdo/vim-exchange' },

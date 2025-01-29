@@ -12,6 +12,8 @@ vim.api.nvim_set_keymap('n', '\'\'', ':NvimTreeFindFileToggle<CR>', opts('Toggle
 
 -- Test toggle
 vim.api.nvim_set_keymap('n', '<leader>a', ':AV<CR>', opts('Alternate file'))
+vim.api.nvim_set_keymap("n", "<leader>m", "<cmd>:Other<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>x", "<cmd>:OtherVSplit<CR>", { noremap = true, silent = true })
 
 -- Git hunks of buffer in LocList
 vim.keymap.set('n', '<leader>s', "<cmd>lua package.loaded.gitsigns.setloclist()<cr>", opts('Hunks in LocList'))
