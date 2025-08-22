@@ -41,6 +41,23 @@ require('base16-colorscheme').setup({
   base0F = colors.yellow,
 })
 
+-- Diagnostic highlights
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { fg = colors.red, bg = colors.black })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { undercurl = true, sp = colors.red })
+vim.api.nvim_set_hl(0, "DiagnosticSignError", { fg = colors.red, bg = colors.black })
+
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { fg = colors.orange, bg = colors.black })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { undercurl = true, sp = colors.orange })
+vim.api.nvim_set_hl(0, "DiagnosticSignWarn", { fg = colors.orange, bg = colors.black })
+
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { fg = colors.cyan, bg = colors.black })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { undercurl = true, sp = colors.cyan })
+vim.api.nvim_set_hl(0, "DiagnosticSignHint", { fg = colors.cyan, bg = colors.black })
+
+vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { fg = colors.blue, bg = colors.black })
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { undercurl = true, sp = colors.blue })
+vim.api.nvim_set_hl(0, "DiagnosticSignInfo", { fg = colors.blue, bg = colors.black })
+
 -- Elixir treesitter colors
 vim.api.nvim_set_hl(0, '@spell.markdown', { fg = colors.orange, bg = colors.black })
 vim.api.nvim_set_hl(0, '@module.elixir', { fg = colors.brown, bg = colors.black })
@@ -72,3 +89,11 @@ vim.api.nvim_set_hl(0, 'TelescopeBorder', { fg = colors.cyan, bg = colors.black 
 vim.api.nvim_set_hl(0, 'TelescopePromptBorder', { fg = colors.cyan, bg = colors.black })
 vim.api.nvim_set_hl(0, 'TelescopePreviewBorder', { fg = colors.blue, bg = colors.black })
 vim.api.nvim_set_hl(0, 'TelescopeResultsBorder', { fg = colors.blue, bg = colors.black })
+
+-- -- Устанавливаем цвета для git-значков в nvim-tree
+vim.api.nvim_set_hl(0, "NvimTreeGitNew", { fg = colors.green, bg = colors.black })        -- untracked
+vim.api.nvim_set_hl(0, "NvimTreeGitDirty", { fg = colors.darkorange, bg = colors.black }) -- unstaged
+vim.api.nvim_set_hl(0, "NvimTreeGitDeleted", { fg = colors.red, bg = colors.black })      -- deleted
+vim.api.nvim_set_hl(0, "NvimTreeRootFolder", { fg = colors.blue, bg = colors.black })     -- deleted
+-- vim.api.nvim_set_hl(0, "NvimTreeNormal", { fg = colors.blue, bg = colors.black })         -- deleted
+-- vim.api.nvim_set_hl(0, "NvimTreeNormalNC", { fg = colors.blue, bg = colors.black })       -- deleted

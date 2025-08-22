@@ -7,11 +7,26 @@ require("mason").setup({
 require("mason-lspconfig").setup({
   ensure_installed = { "elixirls", "lua_ls" },
 })
+
 --
 -- Elixir LS
 --
+
+-- Mason puts shims in: stdpath("data") .. "/mason/bin"
+local mason_bin = vim.fn.stdpath("data") .. "/mason/bin"
+-- ensure Mason bin is at the *front* of PATH, so brew не перехватывает
+if not string.find(vim.env.PATH or "", mason_bin, 1, true) then
+  vim.env.PATH = mason_bin .. ":" .. (vim.env.PATH or "")
+end
+
+-- resolve elixirls cmd via Mason shim, fallback to PATH
+local elixirls_cmd = mason_bin .. "/elixir-ls"
+if not (vim.uv or vim.loop).fs_stat(elixirls_cmd) then
+  elixirls_cmd = "elixir-ls"
+end
+
 lspconfig.elixirls.setup {
-  -- cmd = { 'elixir-ls' },
+  cmd = { elixirls_cmd },
   settings = {
     elixirLS = {
       dialyzerEnabled = false, -- Отключаем для тестирования
@@ -98,3 +113,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end,
 })
 -- vim.api.nvim_command("autocmd! * <buffer>")
+-- vim.diagnostic.config({ virtual_text = true })

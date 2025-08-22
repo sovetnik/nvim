@@ -32,9 +32,9 @@ vim.keymap.set('n', '\\', builtin.live_grep, opts('Telescope: grep files'))
 vim.keymap.set('n', '<leader>b', builtin.buffers, opts('Telescope: list buffers'))
 vim.keymap.set('n', '<leader>l', ":lua require'elixir-extras'.elixir_view_docs({include_mix_libs=true})<cr>",
   { desc = "elixir apidocs (all)" })
-
 vim.keymap.set('n', '<leader>u', builtin.lsp_definitions, opts('Telescope: LSP definitions'))
 vim.keymap.set('n', '<leader>i', builtin.lsp_references, opts('Telescope: LSP references'))
+vim.api.nvim_set_keymap('n', ':', ':Telescope cmdline<CR>', { noremap = true, desc = "Cmdline" })
 
 ----
 ---- Signature help

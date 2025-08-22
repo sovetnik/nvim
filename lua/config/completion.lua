@@ -1,11 +1,14 @@
 -- Set up nvim-cmp.
-local cmp = require 'cmp'
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+
+require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_lua").lazy_load({ paths = "~/.config/nvim/snippets" })
 
 cmp.setup({
   snippet = {
-    -- REQUIRED - you must specify a snippet engine
     expand = function(args)
-      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      luasnip.lsp_expand(args.body)
     end,
   },
   window = {
@@ -16,19 +19,30 @@ cmp.setup({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-e>'] = cmp.mapping.abort(),
-    -- Accept currently selected item.
-    -- Set `select` to `false` to only confirm explicitly selected items.
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
+
     ['<Tab>'] = function(fallback)
-      if cmp.visible() then cmp.select_next_item() else fallback() end
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
+      else
+        fallback()
+      end
     end,
     ['<S-Tab>'] = function(fallback)
-      if cmp.visible() then cmp.select_prev_item() else fallback() end
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
     end,
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
-    { name = 'vsnip' }, -- For vsnip users.
+    { name = 'luasnip' }, -- 🔁 меняем vsnip на luasnip
   }, {
     { name = 'buffer' },
   })

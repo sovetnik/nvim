@@ -70,6 +70,7 @@ neogit.setup {
     --
     diffview = false,
   },
+
   -- Setting any section to `false` will make the section not render at all
   sections = {
     untracked = {
@@ -101,6 +102,7 @@ neogit.setup {
       hidden = false
     },
   },
+
   -- override/add mappings
   -- mappings = {
   --   -- modify status buffer mappings

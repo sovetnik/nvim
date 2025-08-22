@@ -1,7 +1,8 @@
 require 'plugins'
 
-require 'config.absolute'
 require 'config.colorscheme'
+require 'config.absolute'
+require 'config.companion'
 require 'config.completion'
 require 'config.elixir'
 require 'config.gitsign'
@@ -17,10 +18,22 @@ require 'config.treesitter'
 require 'mappings.core'
 require 'mappings.leader'
 
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = "*",
+--   callback = function()
+--     vim.lsp.buf.format({ async = false })
+--   end,
+-- })
+
 vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = "*",
   callback = function()
-    vim.lsp.buf.format({ async = false })
+    local ok, err = pcall(function()
+      vim.lsp.buf.format({ async = false })
+    end)
+    if not ok then
+      vim.notify("LSP Format error: " .. err, vim.log.levels.WARN)
+    end
   end,
 })
 
@@ -30,5 +43,3 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     vim.highlight.on_yank({ higroup = "IncSearch", timeout = 700 })
   end,
 })
-
-

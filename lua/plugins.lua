@@ -32,7 +32,6 @@ local plugins = {
     requires = { "nvim-lua/plenary.nvim" }
   },
 
-
   -- File browser
   {
     'nvim-tree.lua',
@@ -49,6 +48,7 @@ local plugins = {
     'nvim-telescope/telescope.nvim',
     requires = { 'plenary.nvim', 'telescope-fzf-native.nvim' }
   },
+  { 'jonarrien/telescope-cmdline.nvim' },
 
   -- GIT integration
   {
@@ -64,14 +64,20 @@ local plugins = {
   { 'williamboman/mason.nvim' },
   { 'williamboman/mason-lspconfig.nvim' },
   { 'neovim/nvim-lspconfig' },
-  { 'hrsh7th/cmp-nvim-lsp' },
-  { 'hrsh7th/cmp-buffer' },
-  { 'hrsh7th/cmp-path' },
-  { 'hrsh7th/cmp-cmdline' },
-  { 'hrsh7th/cmp-vsnip' },
-  { 'hrsh7th/vim-vsnip' },
-  { "rafamadriz/friendly-snippets" },
-  { 'hrsh7th/nvim-cmp' },
+
+  -- Autocompletion + snippets
+  {
+    'hrsh7th/nvim-cmp',
+    dependencies = {
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'L3MON4D3/LuaSnip',
+      'saadparwaiz1/cmp_luasnip',
+      'rafamadriz/friendly-snippets',
+    },
+  },
 
   -- Autopairs
   {
@@ -83,6 +89,7 @@ local plugins = {
   },
 
   -- Test runner
+  { "vim-test/vim-test" },
   { "nvim-neotest/nvim-nio" },
   { "jfpedroza/neotest-elixir" },
   { "olimorris/neotest-rspec" },
@@ -90,6 +97,7 @@ local plugins = {
   { "antoinemadec/FixCursorHold.nvim" },
   {
     "nvim-neotest/neotest",
+    commit = "52fca67",
     requires = { "nvim-neotest/nvim-nio", "nvim-neotest/neotest-vim-test", "plenary.nvim", "antoinemadec/FixCursorHold.nvim" }
   },
 
@@ -115,6 +123,15 @@ local plugins = {
   { 'tpope/vim-repeat' },
   { 'tpope/vim-surround' },
   { 'tpope/vim-unimpaired' },
+
+  -- CodeCompanion
+  {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
+  },
 
   -- Elixir integration
   {

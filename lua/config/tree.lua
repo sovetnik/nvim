@@ -26,10 +26,22 @@ require("nvim-tree").setup({
   },
   renderer = {
     group_empty = true,
+    icons = {
+      glyphs = {
+        git = {
+          unstaged  = "≉", --   Неиндексированные изменения
+          staged    = "✓", --   Индексированные (готовы к коммиту)
+          unmerged  = "", --   Конфликты
+          renamed   = "➜", -- ➜  Переименованные файлы
+          untracked = "✚", -- ★  Новые файлы
+          deleted   = "", --   Удалённые файлы
+          ignored   = "◌", --   Игнорируемые файлы (из .gitignore)
+        },
+      },
+    },
   },
-  filters = {
-    dotfiles = true,
-  },
+  filters = { dotfiles = true, },
+  -- git = { enable = false, -- Выключает git-значки },
   update_cwd = true,
   update_focused_file = {
     enable = true,
