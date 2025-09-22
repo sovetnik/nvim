@@ -1,97 +1,79 @@
--- Setup language servers.
-local lspconfig = require('lspconfig')
-
-require("mason").setup({
-  PATH = "append",
-})
+require("mason").setup({ PATH = "append" })
 require("mason-lspconfig").setup({
   ensure_installed = { "elixirls", "lua_ls" },
 })
 
---
--- Elixir LS
---
-
 -- Mason puts shims in: stdpath("data") .. "/mason/bin"
 local mason_bin = vim.fn.stdpath("data") .. "/mason/bin"
--- ensure Mason bin is at the *front* of PATH, so brew не перехватывает
+-- Принудительно кладём Mason/bin в начало PATH (чтобы brew не перехватывал)
 if not string.find(vim.env.PATH or "", mason_bin, 1, true) then
   vim.env.PATH = mason_bin .. ":" .. (vim.env.PATH or "")
 end
 
--- resolve elixirls cmd via Mason shim, fallback to PATH
+-- ----- ElixirLS -----
+-- Разрешаем команду через Mason shim, fallback на PATH
 local elixirls_cmd = mason_bin .. "/elixir-ls"
-if not (vim.uv or vim.loop).fs_stat(elixirls_cmd) then
+if vim.fn.executable(elixirls_cmd) ~= 1 then
   elixirls_cmd = "elixir-ls"
 end
 
-lspconfig.elixirls.setup {
+
+vim.lsp.config('elixirls', {
   cmd = { elixirls_cmd },
   settings = {
     elixirLS = {
-      dialyzerEnabled = false, -- Отключаем для тестирования
+      dialyzerEnabled = false, -- на время — быстрее цикл
       fetchDeps = false,
-    }
+    },
   },
-}
+})
 
---
--- Lua LS
---
-lspconfig.lua_ls.setup {
+-- ----- Lua LS -----
+vim.lsp.config('lua_ls', {
   settings = {
     Lua = {
       runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
         version = 'LuaJIT',
       },
       diagnostics = {
-        -- Get the language server to recognize the `vim` global
         globals = { 'vim' },
       },
       workspace = {
-        -- Make the server aware of Neovim runtime files
         library = vim.api.nvim_get_runtime_file("", true),
+        checkThirdParty = false,
       },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
+      telemetry = { enable = false },
     },
   },
-}
-
-
---
--- Ruby LS
---
-lspconfig.rubocop.setup {}
-lspconfig.ruby_lsp.setup {}
-
-require "lsp_signature".setup({
-  bind = true, -- This is mandatory, otherwise border config won't get registered.
-  handler_opts = {
-    border = "rounded"
-  }
 })
 
--- Global mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
+-- Включаем конфиги. Можно списком.
+vim.lsp.enable({ 'elixirls', 'lua_ls', 'ruby_lsp', 'rubocop' })
+
+-- Опционально: lsp_signature (оставляю как у тебя)
+require('lsp_signature').setup({
+  bind = true,
+  handler_opts = { border = "rounded" },
+})
+
+-- ===== Диагностика и хоткеи =====
+-- Глобальные хоткеи диагностик
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '[d', function()
+  vim.diagnostic.jump { count = -1 }
+end, { desc = "Go to previous diagnostic" })
+
+vim.keymap.set('n', ']d', function()
+  vim.diagnostic.jump { count = 1 }
+end, { desc = "Go to next diagnostic" })
 vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
--- Use LspAttach autocommand to only map the following keys
--- after the language server attaches to the current buffer
+-- Буферные хоткеи — только после attach
 vim.api.nvim_create_autocmd('LspAttach', {
   group = vim.api.nvim_create_augroup('UserLspConfig', {}),
   callback = function(ev)
-    -- Enable completion triggered by <c-x><c-o>
     vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
-    -- Buffer local mappings.
-    -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
@@ -108,9 +90,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
     vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
     vim.keymap.set('n', '<space>f', function()
-      vim.lsp.buf.format { async = true }
+      vim.lsp.buf.format({ async = true })
     end, opts)
   end,
 })
--- vim.api.nvim_command("autocmd! * <buffer>")
+
+-- Если надо включить virtual_text:
 -- vim.diagnostic.config({ virtual_text = true })

@@ -2,56 +2,50 @@
 
 require("codecompanion").setup({
   adapters = {
-    codellama = function()
-      return require("codecompanion.adapters").extend("ollama", {
-        name = "codellama", -- Give this adapter a different name to differentiate it from the default ollama adapter
-        schema = {
-          model = {
-            default = "codellama:34b",
+    http = {
+      codellama = function()
+        return require("codecompanion.adapters.http").extend("ollama", {
+          name = "codellama", -- Give this adapter a different name to differentiate it from the default ollama adapter
+          schema = {
+            model = {
+              default = "codellama:34b",
+            },
+            num_ctx = {
+              default = 16384,
+            },
+            num_predict = {
+              default = -1,
+            },
           },
-          num_ctx = {
-            default = 16384,
-          },
-          num_predict = {
-            default = -1,
-          },
-        },
-      })
-    end,
+        })
+      end,
 
-    gemma = function()
-      return require("codecompanion.adapters").extend("ollama", {
-        name = "gemma", -- Give this adapter a different name to differentiate it from the default ollama adapter
-        schema = {
-          model = {
-            default = "codegemma",
+      -- OpenRouter via OpenAI-compatible adapter
+      openrouter = function()
+        return require("codecompanion.adapters.http").extend("openai_compatible", {
+          name = "openrouter",
+          env = {
+            api_key = "OPENROUTER_API_KEY",
+            url = "https://openrouter.ai/api",
+            chat_url = "/v1/chat/completions",
+            models_endpoint = "/v1/models",
           },
-          num_ctx = {
-            default = 16384,
+          headers = {
+            ["Content-Type"] = "application/json",
+            Authorization = "Bearer ${api_key}",
+            -- Optionally uncomment to satisfy OpenRouter best practices:
+            -- ["HTTP-Referer"] = "https://your.domain.or.repo",
+            -- ["X-Title"] = "Neovim CodeCompanion",
           },
-          num_predict = {
-            default = -1,
+          schema = {
+            model = {
+              -- Pick a sensible default; change to your preferred OpenRouter model
+              default = "openrouter/auto",
+            },
           },
-        },
-      })
-    end,
-
-    phi = function()
-      return require("codecompanion.adapters").extend("ollama", {
-        name = "phi", -- Give this adapter a different name to differentiate it from the default ollama adapter
-        schema = {
-          model = {
-            default = "phi4:latest",
-          },
-          num_ctx = {
-            default = 16384,
-          },
-          num_predict = {
-            default = -1,
-          },
-        },
-      })
-    end,
+        })
+      end,
+    },
   },
   display = {
     action_palette = {
@@ -68,10 +62,10 @@ require("codecompanion").setup({
   -- disabled_adapters = { "copilot" },
   strategies = {
     chat = {
-      adapter = "phi",
+      adapter = "openrouter",
     },
     inline = {
-      adapter = "phi",
+      adapter = "openrouter",
     },
   },
 })
