@@ -1,14 +1,14 @@
 --
 -- Setting leader mappings
 --
-vim.g.mapleader = ';'
+vim.g.mapleader = '~'
 
 local function opts(desc)
   return { noremap = true, silent = true, desc = desc }
 end
 
 -- Tree toggle
-vim.api.nvim_set_keymap('n', '\'\'', ':NvimTreeFindFileToggle<CR>', opts('Toggle Tree'))
+vim.api.nvim_set_keymap('n', '<leader><leader>', ':NvimTreeFindFileToggle<CR>', opts('Toggle Tree'))
 
 -- Test toggle
 vim.api.nvim_set_keymap('n', '<leader>a', ':AV<CR>', opts('Alternate file'))
@@ -27,6 +27,8 @@ vim.api.nvim_set_keymap('n', '<leader>g', ':Neogit<CR>', opts('Open Neogit'))
 --
 -- Telescope
 local builtin = require('telescope.builtin')
+-- lexmechanic menu
+vim.keymap.set('n', '<leader>k', "<cmd>LexMenu<cr>", opts('LexMechanic menu'))
 vim.keymap.set('n', '<leader>n', builtin.find_files, opts('Telescope: find files'))
 vim.keymap.set('n', '\\', builtin.live_grep, opts('Telescope: grep files'))
 vim.keymap.set('n', '<leader>b', builtin.buffers, opts('Telescope: list buffers'))

@@ -72,7 +72,7 @@ local plugins = {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
+      -- 'hrsh7th/cmp-cmdline',
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
       'rafamadriz/friendly-snippets',
@@ -132,6 +132,14 @@ local plugins = {
       "nvim-treesitter/nvim-treesitter",
     },
   },
+
+  -- Local LexMechanic experiment. Keep disabled until the plugin contract stabilizes.
+  -- {
+  --   dir = "~/dev/pantheon/lexmechanic",
+  --   config = function()
+  --     require("lexmechanic").setup({ host = "127.0.0.1", port = 4545 })
+  --   end,
+  -- },
 
   -- Elixir integration
   {

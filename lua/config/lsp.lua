@@ -1,6 +1,9 @@
 require("mason").setup({ PATH = "append" })
 require("mason-lspconfig").setup({
   ensure_installed = { "elixirls", "lua_ls" },
+  automatic_enable = {
+    exclude = { "expert", "lexical" },
+  },
 })
 
 -- Mason puts shims in: stdpath("data") .. "/mason/bin"

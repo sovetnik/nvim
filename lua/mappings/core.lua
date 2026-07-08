@@ -8,10 +8,10 @@ end
 -- Disabling arrow keys, space key, exmode enter
 -- with Q key, help with F1, etc.
 --
-vim.api.nvim_set_keymap('n', '<up>', '', opts('Disable key'))
-vim.api.nvim_set_keymap('n', '<down>', '', opts('Disable key'))
-vim.api.nvim_set_keymap('n', '<left>', '', opts('Disable key'))
-vim.api.nvim_set_keymap('n', '<right>', '', opts('Disable key'))
+-- vim.api.nvim_set_keymap('n', '<up>', '', opts('Disable key'))
+-- vim.api.nvim_set_keymap('n', '<down>', '', opts('Disable key'))
+-- vim.api.nvim_set_keymap('n', '<left>', '', opts('Disable key'))
+-- vim.api.nvim_set_keymap('n', '<right>', '', opts('Disable key'))
 vim.api.nvim_set_keymap('n', '<delete>', '', opts('Disable key'))
 vim.api.nvim_set_keymap('n', '<space>', '', opts('Disable key'))
 vim.api.nvim_set_keymap('n', 'Q', '', opts('Disable key'))

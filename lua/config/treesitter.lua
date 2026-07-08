@@ -1,4 +1,9 @@
-require 'nvim-treesitter.configs'.setup {
+local ok, treesitter = pcall(require, "nvim-treesitter.configs")
+if not ok then
+  return
+end
+
+treesitter.setup {
 
   -- Automatically install missing parsers when entering buffer
   -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
