@@ -1,33 +1,41 @@
-local ok, treesitter = pcall(require, "nvim-treesitter.configs")
+local ok, treesitter = pcall(require, "nvim-treesitter")
 if not ok then
   return
 end
 
 treesitter.setup {
-
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
-  -- A list of parser names, or "all" (the five listed parsers should always be installed)
-  ensure_installed = { "elixir", "lua", "vim", "vimdoc", "query", "html", "markdown_inline" },
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  -- sync_install = false,
-  -- ignore_install = {},
-
-  -- List of parsers to ignore installing (for "all")
-  -- ignore_install = { "javascript" },
-
-  modules = {},
-
-  highlight = {
-    enable = true,
-    additional_vim_regex_highlighting = false,
-  },
+  install_dir = vim.fn.stdpath('data') .. '/site',
 }
 
--- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
---   pattern = { "*.ex", "*.exs" },
---   callback = function()
---     vim.cmd("TSBufEnable highlight")
---   end,
--- })
+-- parser name -> filetype(s) that should trigger highlighting/install
+local parsers = {
+  elixir = { "elixir" },
+  lua = { "lua" },
+  vim = { "vim" },
+  vimdoc = { "help" },
+  query = { "query" },
+  html = { "html" },
+  markdown_inline = { "markdown" },
+}
+
+local ensure_installed = vim.tbl_keys(parsers)
+local installed = require("nvim-treesitter.config").get_installed()
+local missing = vim.tbl_filter(function(lang)
+  return not vim.tbl_contains(installed, lang)
+end, ensure_installed)
+
+if #missing > 0 then
+  treesitter.install(missing)
+end
+
+local filetypes = {}
+for _, fts in pairs(parsers) do
+  vim.list_extend(filetypes, fts)
+end
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = filetypes,
+  callback = function()
+    vim.treesitter.start()
+  end,
+})

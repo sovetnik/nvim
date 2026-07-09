@@ -110,7 +110,11 @@ local plugins = {
   { "ray-x/lsp_signature.nvim" },
 
   -- Treesitter
-  { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' },
+  {
+    'nvim-treesitter/nvim-treesitter',
+    branch = "main",
+    run = ':TSUpdate'
+  },
 
   { 'rgroli/other.nvim' },
 
